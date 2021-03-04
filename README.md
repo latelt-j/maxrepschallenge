@@ -1,4 +1,4 @@
-# maxrepschallenge
+# MaxRepsChallenge
 
 ## Description
 
