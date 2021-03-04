@@ -3,7 +3,7 @@
 ## Description
 
 Simple project for the max reps challenge:
-⋅⋅* 4 exercices (pull-up, push-up, dips, plank) - 2mins of rest time between each exercices
+* 4 exercices (pull-up, push-up, dips, plank) - 2mins of rest time between each exercices
 
 ## Roadmaps
 - [x] Alpha with few features for max reps challenge
