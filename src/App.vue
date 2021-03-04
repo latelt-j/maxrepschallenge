@@ -1,16 +1,18 @@
 <template>
   <div>
     <div id="app">
-      <div v-if="isLogged">
+      <div class="logged" v-if="isLogged">
         <HeaderBar />
         <router-view></router-view>
-        <div class="powered">
-          <div>Made with</div>
-          <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
-          <div>By Lajeanch - alpha v0.1</div>
+        <div class="root-powered">
+          <div class="block-powered">
+            <div>Made with</div>
+            <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
+            <div>By Lajeanch - <span class="badge">alpha v0.1</span></div>
+          </div>
         </div>
       </div>
-      <div v-else>
+      <div class="login" v-else>
         <div style="display: flex; align-items: center; flex-direction: row; height: 96vh; justify-content: center">
           <img src="./assets/hello.png" alt="hello" class="hello-hand animate__animated animate__flip" />
           <div style="display: flex; flex-direction: column">
@@ -22,7 +24,7 @@
         <div class="powered">
           <div>Made with</div>
           <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
-          <div>By Lajeanch - alpha v0.1</div>
+          <div>By Lajeanch - <span class="badge">alpha v0.1</span></div>
         </div>
       </div>
     </div>
@@ -47,7 +49,7 @@ export default {
     HeaderBar
   },
   mounted() {
-    if (this.user.token) {
+    if (this.user.token && this.$route.path === '/') {
       this.$router.push('leaderboard');
     }
   },
@@ -62,7 +64,11 @@ export default {
 <style lang="scss">
 $body-font-family: 'M PLUS Rounded 1c';
 @media (max-width: 890px) {
+  html, body {
+    height:100%;
+  }
   #app {
+    height:100%;
     display: none;
   }
   .mobile {
@@ -86,6 +92,12 @@ $body-font-family: 'M PLUS Rounded 1c';
   padding: 0;
 }
 @media (min-width: 900px) {
+  .logged {
+    height: 100%;
+  }
+  .login {
+    height: 100%;
+  }
   #app {
     font-family: $body-font-family, sans-serif !important;
     flex-direction: row;
@@ -104,12 +116,20 @@ $body-font-family: 'M PLUS Rounded 1c';
   .mobile {
     display: none;
   }
-  .powered {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 10px;
+  .root-powered {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     color: white;
+  }
+  .block-powered {
+    display: flex;
+    flex-direction: row;
+  }
+  .badge {
+    background-color: #42b983;
+    border-radius: 5px;
+    padding: 5px;
   }
 }
 </style>

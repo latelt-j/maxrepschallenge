@@ -34,7 +34,8 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #F7545B;
-  padding: 5px;
+  padding: 10px;
+  border-radius: 5px;
   color: white;
   width: 100px;
 }

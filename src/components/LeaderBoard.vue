@@ -1,44 +1,56 @@
 <template>
   <div class="root">
-    <div class="form-input">
+    <div class="leaderboard">
       <div class="block-input">
-        <img class="img" src="../assets/body-weight.png" width="50" />
-        <div class="score-item">
-          <div>MAX PULL UP</div>
-          <div v-for="(user, index) in leaderBoard.pullUp" :key="user.displayName" class="item-value" :class="backgroundRating(index)">
-            <div>{{ displayScore(user, 'pullUp') }}</div>
+        <div>
+          <div class="block-title">
+            <div class="score-title">MAX PULL UP</div>
+            <img class="score-item-img" src="../assets/body-weight.png" width="50" />
+          </div>
+          <div v-for="(user, index) in leaderBoard.pullUp" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
+            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
+            <div class="score-item-value">{{ displayScore(user, 'pullUp') }}</div>
           </div>
         </div>
       </div>
       <div class="block-input">
-        <img class="img" src="../assets/workout.png" width="50" />
-        <div class="score-item">
-          <div>MAX PUSH UP</div>
-          <div v-for="(user, index) in leaderBoard.pushUp" :key="user.displayName" class="item-value" :class="backgroundRating(index)">
-            <div>{{ displayScore(user, 'pushUp') }}</div>
+        <div>
+          <div class="block-title">
+            <div class="score-title">MAX PUSH UP</div>
+            <img class="score-item-img" src="../assets/workout.png" width="50" />
+          </div>
+          <div v-for="(user, index) in leaderBoard.pushUp" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
+            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
+            <div class="score-item-value">{{ displayScore(user, 'pushUp') }}</div>
           </div>
         </div>
       </div>
       <div class="block-input">
-        <img class="img" src="../assets/cardio.png" width="50" />
-        <div class="score-item">
-          <div>MAX DIPS</div>
-          <div v-for="(user, index) in leaderBoard.dips" :key="user.displayName" class="item-value" :class="backgroundRating(index)">
-            <div>{{ displayScore(user, 'dips') }}</div>
+        <div>
+          <div class="block-title">
+            <div class="score-title">MAX DIPS</div>
+            <img class="score-item-img" src="../assets/cardio.png" width="50" />
+          </div>
+          <div v-for="(user, index) in leaderBoard.dips" :key="`${user.displayName}-${index}`" class="score-item-block" :class="backgroundRating(index)">
+            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
+            <div class="score-item-value">{{ displayScore(user, 'dips') }}</div>
           </div>
         </div>
       </div>
       <div class="block-input">
-        <img class="img" src="../assets/plank.png" width="50" />
-        <div class="score-item">
-          <div>SHEATHING</div>
-          <div v-for="(user, index) in leaderBoard.sheathing" :key="user.displayName" class="item-value" :class="backgroundRating(index)">
-            <div>{{ displayScore(user, 'sheathing') }}</div>
+        <div>
+          <div class="block-title">
+            <div class="score-title">MAX PLANK</div>
+            <img class="score-item-img" src="../assets/plank.png" width="50" />
+          </div>
+          <div v-for="(user, index) in leaderBoard.sheathing" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
+            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
+            <div class="score-item-value">{{ displayScore(user, 'sheathing') }}</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="letsgo" >Damn dick heads you are so awesome!</div>
+    <div class="letsgo">Damn dick heads you are so awesome! Can I took a selfi?  👱🏻‍♀️‍🤳🏻</div>
   </div>
 </template>
 
@@ -53,14 +65,14 @@ export default {
     }
   },
   computed: {
-  ...mapState(['leaderBoard'])
+    ...mapState(['leaderBoard'])
   },
   async mounted() {
     await this.getLeaderBoard();
   },
   methods: {
     displayScore(user, type) {
-      return `${user.displayName.substring(0, 4)}: ${user[type]}`;
+      return `${user.displayName.split(' ')[0]}: ${user[type]}`;
     },
     backgroundRating(rank) {
       switch (rank) {
@@ -88,16 +100,16 @@ input[type=number] {
 }
 .root {
   display: flex;
-  height: 90vh;
+  height: calc(100% - 50px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.form-input {
+.leaderboard {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row;
 }
 .block-input {
@@ -115,24 +127,39 @@ input[type=number] {
   font-size: 20px;
   text-align: center;
 }
-.item-value {
+.block-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.score-title {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  border-bottom: white solid 2px;
+}
+.score-item-img {
+  margin-left: 10px;
+}
+.score-item-block {
   font-size: 15px;
   font-weight: bold;
   flex-direction: row;
-  justify-content: center;
-  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
   display: flex;
+  padding-bottom: 5px;
 }
-.rank-first {
-  background-color: #E8DA3A;
+.score-item-value {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
-.rank-second {
-  background-color: #97A0A8;
-}
-.rank-third {
-  background-color: #B57B3A;
-}
+
 .letsgo {
+  font-size: 25px;
+  font-weight: bold;
   color: white;
   margin-top: 50px;
   border-bottom: 1px solid white;

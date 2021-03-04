@@ -2,45 +2,56 @@
   <div class="root">
     <div class="form-input">
       <div class="block-input">
-        <img class="img" src="../assets/body-weight.png" width="50" />
         <div class="score-item">
-          <div>MAX PULL UP</div>
+          <div class="block-title">
+            <div class="title-score">MAX PULL UP</div>
+            <img class="img" src="../assets/body-weight.png" width="50" />
+          </div>
           <div class="item-value">{{ user.pullUp || '-' }}</div>
         </div>
       </div>
       <div class="block-input">
-        <img class="img" src="../assets/workout.png" width="50" />
         <div class="score-item">
-          <div>MAX PUSH UP</div>
+          <div class="block-title">
+            <div class="title-score">MAX PUSH UP</div>
+            <img class="img" src="../assets/workout.png" width="50" />
+          </div>
           <div class="item-value">{{ user.pushUp || '-' }}</div>
         </div>
       </div>
       <div class="block-input">
-        <img class="img" src="../assets/cardio.png" width="50" />
         <div class="score-item">
-          <div>MAX DIPS</div>
+          <div class="block-title">
+            <div class="title-score">MAX DIPS</div>
+            <img class="img" src="../assets/cardio.png" width="50" />
+          </div>
           <div class="item-value">{{ user.dips || '-' }}</div>
         </div>
       </div>
       <div class="block-input">
-        <img class="img" src="../assets/plank.png" width="50" />
         <div class="score-item">
-          <div>SHEATHING</div>
+          <div class="block-title">
+            <div class="title-score">PLANK</div>
+            <img class="img" src="../assets/plank.png" width="50" />
+          </div>
           <div class="item-value">{{ user.sheathing || '-' }}</div>
         </div>
       </div>
     </div>
-    <div class="letsgo" >Well done ma boy keep pushing!</div>
+    <div class="letsgo">{{ labelLetsGo }}</div>
   </div>
 </template>
 
 <script>
-import {mapState} from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: 'MyScore',
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    labelLetsGo() {
+      return !this.user.sheathing ? "Eh man, stop sleeping and do your fuck'n challenge 🛌🏻" : "Well done ma boy keep pushing! 👀";
+    }
   }
 }
 </script>
@@ -57,7 +68,7 @@ input[type=number] {
 }
 .root {
   display: flex;
-  height: 90vh;
+  height: calc(100% - 50px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -75,11 +86,21 @@ input[type=number] {
   align-items: center;
   justify-content: center;
 }
+.block-title {
+  display: flex;
+  flex-direction: row;
+}
+.title-score {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+}
 .score-item {
   height: 70px;
-  width: 212px;
-  background-color: white;
-  margin: 0px 5px;
+  border: white solid 2px;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 0px 30px;
   color: #236EE8;
   font-size: 20px;
   display: flex;
@@ -88,11 +109,13 @@ input[type=number] {
   justify-content: center;
 }
 .item-value {
-  color: #236EE8;
+  color: white;
   font-size: 15px;
   font-weight: bold;
 }
 .letsgo {
+  font-size: 25px;
+  font-weight: bold;
   color: white;
   margin-top: 50px;
   border-bottom: 1px solid white;

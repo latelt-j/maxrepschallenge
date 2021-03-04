@@ -144,12 +144,21 @@ const store = new Vuex.Store({
         types.forEach(async type => {
           const listBestReps = await firebase.firestore().collection("users").orderBy(type, "desc").limit(3).get();
           const collectionUsers = [];
+          const defaultLeaderboard = [{
+            displayName: 'None',
+            [type]: '/'
+          }, { displayName: 'None',
+            [type]: '/'
+          }, { displayName: 'None',
+            [type]: '/'
+          }];
           listBestReps.forEach( userDoc => {
             let newUserDoc = userDoc.data();
             newUserDoc = { [type]: newUserDoc[type], displayName: newUserDoc.displayName };
             collectionUsers.push(newUserDoc);
-          })
-          commit('LEADER_BOARD_SUCCESS', { [type]: collectionUsers });
+          });
+          const tmp = collectionUsers.length > 2 ? collectionUsers : [...collectionUsers, ...defaultLeaderboard.slice(0, 3 - collectionUsers.length)];
+          commit('LEADER_BOARD_SUCCESS', { [type]: tmp });
         })
       } catch (e) {
         commit('LEADER_BOARD_FAILURE', e);

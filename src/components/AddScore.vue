@@ -18,21 +18,38 @@
         <input type="number" @input="onChange($event, 'sheathing')" :value="form.sheathing">
       </div>
     </div>
-    <div class="warning-alert">
-      <font-awesome-icon icon="exclamation-triangle" style="margin-left: 5px"/>
-      Warning: this is an alpha project, submitting a new score will erase the previous one!
-    </div>
-    <div class="submit" @click="onSubmit" :disabled="true" :class="{ 'isDisabled': !isFormValid, 'isLoading': isLoading }">
+    <div class="submit" @click="changeModalState()" :disabled="true" :class="{ 'isDisabled': !isFormValid, 'isLoading': isLoading }">
       <span v-if="!isLoading">SUBMIT THAT BITCH!</span>
       <div v-else class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
+    <!-- use the modal component, pass in the prop -->
+    <Modal v-if="showModal" @close="changeModalState()">
+      <h3 slot="header">Warning 🧗🏻‍♂️</h3>
+      <div slot="body">
+        <div class="warning-alert">
+          <font-awesome-icon icon="exclamation-triangle" style="margin-left: 5px" color="#E89C09"/>
+          Warning: this is an alpha project, submitting a new score will erase the previous one!
+        </div>
+      </div>
+      <div slot="footer">
+        <div style="display: flex; justify-content: space-around">
+          <button class="button" @click="onSubmit()">OK</button>
+          <button class="button canceled" @click="changeModalState()">CANCELED</button>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex';
+import Modal from './Modal.vue';
+
 export default {
   name: 'AddScore',
+  components: {
+    Modal
+  },
   data() {
     return {
       form: {
@@ -41,12 +58,13 @@ export default {
         dips: null,
         sheathing: null
       },
+      showModal: false,
       ...mapActions(['submitReps'])
     }
   },
   computed: {
     isFormValid() {
-      return this.form.pullUp && this.form.pushUp && this.form.dips && (this.form.sheathing && new RegExp("[0-9]{2}:[0-9]{2}").test(this.form.sheathing));
+      return this.form.pullUp && this.form.pushUp && this.form.dips && this.form.sheathing;
     },
     ...mapState(['user', 'isLoading'])
   },
@@ -58,9 +76,14 @@ export default {
       if (this.isFormValid) {
         await this.submitReps(this.form);
         this.form = {};
+        this.changeModalState();
+        this.$router.push('myscore');
       }
+    },
+    changeModalState() {
+      this.showModal = !this.showModal;
     }
-  }
+  },
 }
 </script>
 
@@ -75,8 +98,8 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 .root {
+  height: calc(100% - 50px);
   display: flex;
-  height: 90vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -85,19 +108,22 @@ input[type=number] {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row;
 }
 .block-input {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  border: white solid 2px;
+  border-radius: 15px;
+  padding: 5px;
 }
 input {
   cursor: pointer;
   outline: inherit;
-  border: white solid 2px;
+  border: none;
   height: 50px;
   background-color: transparent;
   margin: 0px 5px;
@@ -108,7 +134,8 @@ input {
 .submit {
   margin-top: 50px;
   background-color: white;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 15px;
   color: #236EE8;
   &.isDisabled {
     background-color: rgba(255, 255, 255, 0.3);
@@ -116,10 +143,6 @@ input {
   &.isLoading {
     background-color: transparent;
   }
-}
-.warning-alert {
-  color: #E89C09;
-  margin-top: 50px;
 }
 .lds-ring {
   display: inline-block;
@@ -155,5 +178,19 @@ input {
   100% {
     transform: rotate(360deg);
   }
+}
+button {
+  border: none;
+}
+.button {
+  &.canceled {
+    background-color: #F7545B;
+    color: white;
+  }
+  background-color: #236EE8;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
 }
 </style>
