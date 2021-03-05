@@ -2,7 +2,7 @@
   <div @click="logoutGoogleAuth()" style="position: absolute; right: 10px; top: 10px;" class="logoutButton">
     <div v-if="!isLoading" style="display: flex; align-items: center; justify-content: center; flex-direction: row; height: 10px">
       <div>Logout</div>
-      <font-awesome-icon icon="door-open" style="margin-left: 5px"/>
+      <font-awesome-icon icon="door-open" style="margin-left: 5px" color="black"/>
     </div>
     <div v-else class="lds-ring"><div></div><div></div><div></div><div></div></div>
   </div>
@@ -28,15 +28,15 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .logoutButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F7545B;
+  background-color: $secondary-color;
   padding: 10px;
   border-radius: 5px;
-  color: white;
+  color: black;
   width: 100px;
 }
 .lds-ring {

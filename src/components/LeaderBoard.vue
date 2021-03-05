@@ -1,56 +1,53 @@
 <template>
   <div class="root">
+    <div class="title">SO WHERE ARE YOU. SATISFY?</div>
     <div class="leaderboard">
       <div class="block-input">
-        <div>
-          <div class="block-title">
-            <div class="score-title">MAX PULL UP</div>
-            <img class="score-item-img" src="../assets/body-weight.png" width="50" />
-          </div>
-          <div v-for="(user, index) in leaderBoard.pullUp" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
-            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
-            <div class="score-item-value">{{ displayScore(user, 'pullUp') }}</div>
-          </div>
+        <div class="block-title">
+          <div class="score-title">MAX PULL UP</div>
+          <img class="score-item-img" src="../assets/body-weight.png" width="50" />
+        </div>
+        <div v-for="(user, index) in leaderBoard.pullUp" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
+          <img :src="require(`../assets/medal-${index}.png`)" width="40" />
+          <div class="score-item-name">{{ displayName(user) }}</div>
+          <div class="score-item-value">{{ displayScore(user, 'pullUp') }}</div>
         </div>
       </div>
       <div class="block-input">
-        <div>
-          <div class="block-title">
-            <div class="score-title">MAX PUSH UP</div>
-            <img class="score-item-img" src="../assets/workout.png" width="50" />
-          </div>
-          <div v-for="(user, index) in leaderBoard.pushUp" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
-            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
-            <div class="score-item-value">{{ displayScore(user, 'pushUp') }}</div>
-          </div>
+        <div class="block-title">
+          <div class="score-title">MAX PUSH UP</div>
+          <img class="score-item-img" src="../assets/workout.png" width="50" />
+        </div>
+        <div v-for="(user, index) in leaderBoard.pushUp" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
+          <img class="score-item-img" :src="require(`../assets/medal-${index}.png`)" width="40" />
+          <div class="score-item-name">{{ displayName(user) }}</div>
+          <div class="score-item-value">{{ displayScore(user, 'pushUp') }}</div>
         </div>
       </div>
       <div class="block-input">
-        <div>
-          <div class="block-title">
-            <div class="score-title">MAX DIPS</div>
-            <img class="score-item-img" src="../assets/cardio.png" width="50" />
-          </div>
-          <div v-for="(user, index) in leaderBoard.dips" :key="`${user.displayName}-${index}`" class="score-item-block" :class="backgroundRating(index)">
-            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
-            <div class="score-item-value">{{ displayScore(user, 'dips') }}</div>
-          </div>
+        <div class="block-title">
+          <div class="score-title">MAX DIPS</div>
+          <img class="score-item-img" src="../assets/cardio.png" width="50" />
+        </div>
+        <div v-for="(user, index) in leaderBoard.dips" :key="`${user.displayName}-${index}`" class="score-item-block" :class="backgroundRating(index)">
+          <img :src="require(`../assets/medal-${index}.png`)" width="40" />
+          <div class="score-item-name">{{ displayName(user) }}</div>
+          <div class="score-item-value">{{ displayScore(user, 'dips') }}</div>
         </div>
       </div>
       <div class="block-input">
-        <div>
-          <div class="block-title">
-            <div class="score-title">MAX PLANK</div>
-            <img class="score-item-img" src="../assets/plank.png" width="50" />
-          </div>
-          <div v-for="(user, index) in leaderBoard.sheathing" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
-            <img :src="require(`../assets/medal-${index}.png`)" width="50" />
-            <div class="score-item-value">{{ displayScore(user, 'sheathing') }}</div>
-          </div>
+        <div class="block-title">
+          <div class="score-title">MAX PLANK</div>
+          <img class="score-item-img" src="../assets/plank.png" width="50" />
+        </div>
+        <div v-for="(user, index) in leaderBoard.sheathing" :key="user.displayName" class="score-item-block" :class="backgroundRating(index)">
+          <img :src="require(`../assets/medal-${index}.png`)" width="40" />
+          <div class="score-item-name">{{ displayName(user) }}</div>
+          <div class="score-item-value">{{ displayScore(user, 'sheathing') }}</div>
         </div>
       </div>
     </div>
-    <div class="letsgo">Damn dick heads you are so awesome! Can I took a selfi?  👱🏻‍♀️‍🤳🏻</div>
+    <div class="footer-comment">Damn dick heads you are so awesome! Can I took a selfi?  👱🏻‍♀️‍🤳🏻</div>
   </div>
 </template>
 
@@ -71,8 +68,11 @@ export default {
     await this.getLeaderBoard();
   },
   methods: {
+    displayName(user) {
+      return `${user.displayName.split(' ')[0]}`;
+    },
     displayScore(user, type) {
-      return `${user.displayName.split(' ')[0]}: ${user[type]}`;
+      return `${user[type]}`;
     },
     backgroundRating(rank) {
       switch (rank) {
@@ -115,53 +115,48 @@ input[type=number] {
 .block-input {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .score-item {
   height: auto;
   width: 212px;
-  background-color: white;
+  background-color: black;
   margin: 0px 5px;
-  color: #236EE8;
+  color: black;
   font-size: 20px;
   text-align: center;
 }
 .block-title {
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-bottom: 10px;
 }
 .score-title {
-  color: white;
-  font-weight: bold;
+  color: black;
   font-size: 30px;
-  border-bottom: white solid 2px;
+  border-bottom: black solid 2px;
 }
 .score-item-img {
   margin-left: 10px;
 }
 .score-item-block {
   font-size: 15px;
-  font-weight: bold;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   display: flex;
   padding-bottom: 5px;
 }
+.score-item-name {
+  color: black;
+  font-size: 20px;
+  margin: 0 5px;
+}
 .score-item-value {
-  color: white;
+  background-color: black;
+  padding: 0 10px;
+  color: $secondary-color;
   font-size: 20px;
   font-weight: bold;
-}
-
-.letsgo {
-  font-size: 25px;
-  font-weight: bold;
-  color: white;
-  margin-top: 50px;
-  border-bottom: 1px solid white;
 }
 </style>

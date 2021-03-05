@@ -8,23 +8,25 @@
           <div class="block-powered">
             <div>Made with</div>
             <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
-            <div>By Lajeanch - <span class="badge">alpha v0.1</span></div>
+            <div class="author">By Lajeanch - <span class="badge">alpha v0.1</span></div>
           </div>
         </div>
       </div>
       <div class="login" v-else>
-        <div style="display: flex; align-items: center; flex-direction: row; height: 96vh; justify-content: center">
-          <img src="./assets/hello.png" alt="hello" class="hello-hand animate__animated animate__flip" />
+        <div style="display: flex; align-items: center; flex-direction: row; height: 100%; justify-content: center">
+          <img src="./assets/hello.png" alt="hello" class="hello-hand animate__animated animate__zoomInDown" />
           <div style="display: flex; flex-direction: column">
-            <span class="title animate__animated animate__slideInDown">Morning!</span>
-            <span class="title animate__animated animate__slideInDown">How are you feeling?</span>
+            <span class="title-logout animate__animated animate__slideInDown">Morning!</span>
+            <span class="title-logout animate__animated animate__slideInDown">How are you feeling?</span>
             <Login />
           </div>
         </div>
-        <div class="powered">
-          <div>Made with</div>
-          <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
-          <div>By Lajeanch - <span class="badge">alpha v0.1</span></div>
+        <div class="root-powered">
+          <div class="block-powered">
+            <div>Made with</div>
+            <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
+            <div class="author">By Lajeanch - <span class="badge">alpha v0.1</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -62,7 +64,6 @@ export default {
 }
 </script>
 <style lang="scss">
-$body-font-family: 'M PLUS Rounded 1c';
 @media (max-width: 890px) {
   html, body {
     height:100%;
@@ -77,7 +78,8 @@ $body-font-family: 'M PLUS Rounded 1c';
     font-weight: bold;
     height: 100vh;
     display: flex;
-    background: #3190f5 url("./assets/fondo-azul.jpg") no-repeat center center;
+    background: rgb(155,246,255);
+    background: linear-gradient(330deg, rgba(155,246,255,1) 0%, rgba(160,196,255,1) 100%);
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -93,25 +95,39 @@ $body-font-family: 'M PLUS Rounded 1c';
 }
 @media (min-width: 900px) {
   .logged {
-    height: 100%;
+    height: calc(100% - 50px);
   }
   .login {
-    height: 100%;
+    height: calc(100% - 50px);
   }
   #app {
     font-family: $body-font-family, sans-serif !important;
     flex-direction: row;
-    background: #3190f5 url("./assets/fondo-azul.jpg") no-repeat center center;
+    background: rgb(155,246,255);
+    background: linear-gradient(330deg, rgba(155,246,255,1) 0%, rgba(160,196,255,1) 100%);
     height: 100vh;
   }
   .hello-hand {
-    width: 300px;
-    height: 300px;
+    width: 800px;
   }
   .title {
-    font-size: 30px;
-    color: white;
-    font-weight: 400;
+    font-weight: 900;
+    text-shadow: $secondary-color 2px 3px 0px;
+    font-size: 50px;
+    color: black;
+    margin-bottom: 100px
+  }
+  .title-logout {
+    font-weight: 900;
+    text-shadow: $secondary-color 2px 3px 0px;
+    font-size: 50px;
+    color: black;
+  }
+  .footer-comment {
+    font-size: 25px;
+    color: black;
+    margin-top: 50px;
+    border-bottom: 1px solid black;
   }
   .mobile {
     display: none;
@@ -125,11 +141,16 @@ $body-font-family: 'M PLUS Rounded 1c';
   .block-powered {
     display: flex;
     flex-direction: row;
+    align-content: center;
+  }
+  .author {
+    color: black;
   }
   .badge {
-    background-color: #42b983;
+    background-color: black;
     border-radius: 5px;
     padding: 5px;
+    color: white;
   }
 }
 </style>

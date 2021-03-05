@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <div class="title-rules">Règles 😎✌️</div>
+    <div class="title">Règles 😎✌️</div>
     <div>Tu as 4 exercices à faire:</div>
     <ul>
       <li>Tractions</li>
@@ -31,11 +31,5 @@ export default {
     flex-direction: column;
     height: calc(100% - 50px);
     color: white;
-  }
-  .title-rules {
-    margin-top: 200px;
-    margin-bottom: 30px;
-    font-size: 30px;
-    font-weight: bold;
   }
 </style>

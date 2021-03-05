@@ -1,5 +1,5 @@
 <template>
-  <div class="google-btn" @click="onLogin()" style="margin-top: 40px">
+  <div class="google-btn animate__animated animate__slideInDown" @click="onLogin()" style="margin-top: 40px">
     <div class="google-icon-wrapper">
       <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
     </div>
@@ -32,12 +32,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 $white: #fff;
-$google-blue: #4285f4;
-$button-active-blue: #1669F2;
+$google-blue: black;
+$button-active-blue: black;
 
 button { border:none; }
 
 .google-btn {
+  margin-left: 35px;
   width: 184px;
   height: 42px;
   background-color: $google-blue;

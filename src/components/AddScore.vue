@@ -1,5 +1,6 @@
 <template>
   <div class="root">
+    <div class="title">Add your score</div>
     <div class="form-input">
       <div class="block-input">
         <img class="img" src="../assets/body-weight.png" width="50" />
@@ -70,7 +71,7 @@ export default {
   },
   methods: {
     onChange(event, type) {
-      this.form[type] = parseInt(event.target.value);
+      this.form[type] = parseFloat(event.target.value);
     },
     async onSubmit() {
       if (this.isFormValid) {
@@ -112,13 +113,18 @@ input[type=number] {
   flex-direction: row;
 }
 .block-input {
+  background: linear-gradient(90deg, black 22%, transparent 22%);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: white solid 2px;
+  border: black solid 2px;
   border-radius: 15px;
   padding: 5px;
+}
+.block-input:focus-within {
+  border: $secondary-color solid 2px;
+  background: linear-gradient(90deg, $secondary-color 22%, transparent 22%);
 }
 input {
   cursor: pointer;
@@ -127,18 +133,18 @@ input {
   height: 50px;
   background-color: transparent;
   margin: 0px 5px;
-  color: white;
+  color: black;
   font-size: 20px;
   text-align: center;
 }
 .submit {
   margin-top: 50px;
-  background-color: white;
+  background-color: black;
   border-radius: 10px;
   padding: 15px;
-  color: #236EE8;
+  color: black;
   &.isDisabled {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba($secondary-color, 0.3);
   }
   &.isLoading {
     background-color: transparent;
@@ -157,10 +163,10 @@ input {
   width: 32px;
   height: 32px;
   margin: 4px;
-  border: 4px solid #fff;
+  border: 4px solid black;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: black transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -185,12 +191,12 @@ button {
 .button {
   &.canceled {
     background-color: #F7545B;
-    color: white;
+    color: black;
   }
-  background-color: #236EE8;
+  background-color: black;
   border-radius: 10px;
   padding: 10px;
-  color: white;
+  color: black;
   text-align: center;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="root">
+    <div class="title">What about your score?</div>
     <div class="form-input">
       <div class="block-input">
         <div class="score-item">
@@ -38,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="letsgo">{{ labelLetsGo }}</div>
+    <div class="footer-comment">{{ labelLetsGo }}</div>
   </div>
 </template>
 
@@ -88,20 +89,21 @@ input[type=number] {
 }
 .block-title {
   display: flex;
+  align-items: center;
   flex-direction: row;
 }
 .title-score {
-  color: white;
-  font-weight: bold;
+  color: black;
   font-size: 30px;
+  margin-right: 10px;
 }
 .score-item {
+  border: solid black 2px;
   height: 70px;
-  border: white solid 2px;
   border-radius: 15px;
   padding: 10px;
   margin: 0px 30px;
-  color: #236EE8;
+  color: $secondary-color;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -109,15 +111,10 @@ input[type=number] {
   justify-content: center;
 }
 .item-value {
-  color: white;
-  font-size: 15px;
+  color: black;
+  font-size: 20px;
   font-weight: bold;
-}
-.letsgo {
-  font-size: 25px;
-  font-weight: bold;
-  color: white;
-  margin-top: 50px;
-  border-bottom: 1px solid white;
+  background-color: $secondary-color;
+  padding: 0 20px;
 }
 </style>
