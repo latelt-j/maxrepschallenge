@@ -1,39 +1,30 @@
 <template>
-  <div>
-    <div id="app">
-      <div class="logged" v-if="isLogged">
-        <HeaderBar />
-        <router-view></router-view>
-        <div class="root-powered">
-          <div class="block-powered">
-            <div>Made with</div>
-            <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
-            <div class="author">By Lajeanch - <span class="badge">alpha v0.1</span></div>
-          </div>
-        </div>
+  <div id="app" class="h-full min-h-screen flex flex-initial">
+    <div v-if="isLogged" class="flex flex-initial justify-between flex-col w-full text-center">
+      <HeaderBar />
+      <router-view></router-view>
+      <div class="flex flex-row items-center justify-end w-full">
+        <div>Made with</div>
+        <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
+        <div class="author">By Lajeanch - <span class="badge">alpha v0.1</span></div>
       </div>
-      <div class="login" v-else>
-        <div style="display: flex; align-items: center; flex-direction: row; height: 100%; justify-content: center">
+    </div>
+    <div class="flex flex-initial justify-between flex-col w-full text-center" v-else>
+      <div class="flex flex-initial flex-wrap justify-center content-center h-full">
+        <div class="flex flex-wrap justify-center content-center items-center">
           <img src="./assets/hello.png" alt="hello" class="hello-hand animate__animated animate__zoomInDown" />
-          <div style="display: flex; flex-direction: column">
+          <div class="flex flex-col items-center">
             <span class="title-logout animate__animated animate__slideInDown">Morning!</span>
             <span class="title-logout animate__animated animate__slideInDown">How are you feeling?</span>
             <Login />
           </div>
         </div>
-        <div class="root-powered">
-          <div class="block-powered">
-            <div>Made with</div>
-            <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
-            <div class="author">By Lajeanch - <span class="badge">alpha v0.1</span></div>
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="mobile">
-      <img src="./assets/no-phone.png" width="200px" />
-      <div class="mobile-text" style="margin-top: 30px;">Oups, this is an alpha project!</div>
-      <div class="mobile-text">Developper is a bad guy that doesnt know mobile first...</div>
+      <div class="flex flex-row items-center justify-end w-full">
+        <div>Made with</div>
+        <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
+        <div class="author">By Lajeanch - <span class="badge">alpha v0.1</span></div>
+      </div>
     </div>
   </div>
 </template>
@@ -64,93 +55,51 @@ export default {
 }
 </script>
 <style lang="scss">
-@media (max-width: 890px) {
-  html, body {
-    height:100%;
-  }
-  #app {
-    height:100%;
-    display: none;
-  }
-  .mobile {
-    font-family: $body-font-family, sans-serif !important;
-    flex-wrap: wrap;
-    font-weight: bold;
-    height: 100vh;
-    display: flex;
-    background: rgb(155,246,255);
-    background: linear-gradient(330deg, rgba(155,246,255,1) 0%, rgba(160,196,255,1) 100%);
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-  }
-  .mobile-text {
-    color: white;
-  }
-}
 * {
   margin: 0;
   padding: 0;
 }
-@media (min-width: 900px) {
-  .logged {
-    height: calc(100% - 50px);
-  }
-  .login {
-    height: calc(100% - 50px);
-  }
-  #app {
-    font-family: $body-font-family, sans-serif !important;
-    flex-direction: row;
-    background: rgb(155,246,255);
-    background: linear-gradient(330deg, rgba(155,246,255,1) 0%, rgba(160,196,255,1) 100%);
-    height: 100vh;
-  }
-  .hello-hand {
-    width: 800px;
-  }
-  .title {
-    font-weight: 900;
-    text-shadow: $secondary-color 2px 3px 0px;
-    font-size: 50px;
-    color: black;
-    margin-bottom: 100px
-  }
-  .title-logout {
-    font-weight: 900;
-    text-shadow: $secondary-color 2px 3px 0px;
-    font-size: 50px;
-    color: black;
-  }
-  .footer-comment {
-    font-size: 25px;
-    color: black;
-    margin-top: 50px;
-    border-bottom: 1px solid black;
-  }
-  .mobile {
-    display: none;
-  }
-  .root-powered {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: white;
-  }
-  .block-powered {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-  }
-  .author {
-    color: black;
-  }
-  .badge {
-    background-color: black;
-    border-radius: 5px;
-    padding: 5px;
-    color: white;
-  }
+.login {
+  height: calc(100% - 50px);
+}
+#app {
+  font-family: $body-font-family, sans-serif !important;
+  flex-direction: row;
+  background: rgb(155,246,255);
+  background: linear-gradient(330deg, rgba(155,246,255,1) 0%, rgba(160,196,255,1) 100%);
+}
+.hello-hand {
+  width: 800px;
+}
+.title-logout {
+  font-weight: 900;
+  text-shadow: $secondary-color 2px 3px 0px;
+  font-size: 50px;
+  color: black;
+}
+.footer-comment {
+  font-size: 25px;
+  color: black;
+  margin-top: 50px;
+  border-bottom: 1px solid black;
+}
+.mobile {
+  display: none;
+}
+.root-powered {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+}
+.author {
+  color: black;
+  padding: 5px;
+}
+.badge {
+  background-color: black;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="root">
+  <div class="flex flex-col items-center justify-around h-full">
     <div class="title">SO WHERE ARE YOU. SATISFY?</div>
-    <div class="leaderboard">
-      <div class="block-input">
+    <div class="w-full flex items-center justify-around flex-row flex-wrap content-between">
+      <div class="block-input my-5">
         <div class="block-title">
           <div class="score-title">MAX PULL UP</div>
           <img class="score-item-img" src="../assets/body-weight.png" width="50" />
@@ -13,7 +13,7 @@
           <div class="score-item-value">{{ displayScore(user, 'pullUp') }}</div>
         </div>
       </div>
-      <div class="block-input">
+      <div class="block-input my-5">
         <div class="block-title">
           <div class="score-title">MAX PUSH UP</div>
           <img class="score-item-img" src="../assets/workout.png" width="50" />
@@ -24,7 +24,7 @@
           <div class="score-item-value">{{ displayScore(user, 'pushUp') }}</div>
         </div>
       </div>
-      <div class="block-input">
+      <div class="block-input my-5">
         <div class="block-title">
           <div class="score-title">MAX DIPS</div>
           <img class="score-item-img" src="../assets/cardio.png" width="50" />
@@ -35,7 +35,7 @@
           <div class="score-item-value">{{ displayScore(user, 'dips') }}</div>
         </div>
       </div>
-      <div class="block-input">
+      <div class="block-input my-5">
         <div class="block-title">
           <div class="score-title">MAX PLANK</div>
           <img class="score-item-img" src="../assets/plank.png" width="50" />
@@ -116,6 +116,7 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 280px;
 }
 .score-item {
   height: auto;

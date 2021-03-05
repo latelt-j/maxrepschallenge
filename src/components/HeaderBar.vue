@@ -1,20 +1,41 @@
 <template>
-  <div class="root">
-    <Logout />
-    <button class="itemHeaderBar" :class="{'is-focus': isFocus('addscore')}" @click="goTo('addscore')">Add score</button>
-    <button class="itemHeaderBar" :class="{'is-focus': isFocus('myscore')}" @click="goTo('myscore')">My score</button>
-    <button class="itemHeaderBar" :class="{'is-focus': isFocus('leaderboard')}" @click="goTo('leaderboard')">Leaderboard</button>
-    <button class="itemHeaderBar" :class="{'is-focus': isFocus('rules')}" @click="goTo('rules')">Rules (fr)</button>
-    <div class="itemHeaderBar">Track body weight <span class="badge">soon</span></div>
+  <div>
+    <div class="burger-menu">
+      <Slide>
+        <span :class="{'is-focus-burger-menu': isFocus('addscore')}" @click="goTo('addscore')">Add score</span>
+        <span :class="{'is-focus-burger-menu': isFocus('myscore')}" @click="goTo('myscore')">My score</span>
+        <span :class="{'is-focus-burger-menu': isFocus('leaderboard')}" @click="goTo('leaderboard')">Leaderboard</span>
+        <span :class="{'is-focus-burger-menu': isFocus('rules')}" @click="goTo('rules')">Rules (fr)</span>
+        <div>Track body <span class="badge">soon</span></div>
+        <div @click="logoutGoogleAuth()">Logout</div>
+      </Slide>
+    </div>
+    <div class="header-bar root m-2">
+      <Logout />
+      <button class="itemHeaderBar" :class="{'is-focus': isFocus('addscore')}" @click="goTo('addscore')">Add score</button>
+      <button class="itemHeaderBar" :class="{'is-focus': isFocus('myscore')}" @click="goTo('myscore')">My score</button>
+      <button class="itemHeaderBar" :class="{'is-focus': isFocus('leaderboard')}" @click="goTo('leaderboard')">Leaderboard</button>
+      <button class="itemHeaderBar" :class="{'is-focus': isFocus('rules')}" @click="goTo('rules')">Rules (fr)</button>
+      <div class="itemHeaderBar">Track body weight <span class="badge">soon</span></div>
+    </div>
   </div>
 </template>
 
 <script>
+import { Slide } from 'vue-burger-menu'
+import { mapActions } from "vuex";
+
 import Logout from "@/components/Logout";
 export default {
   name: 'HeaderBoard',
   components: {
-    Logout
+    Logout,
+    Slide
+  },
+  data() {
+    return {
+      ...mapActions(['logoutGoogleAuth'])
+    }
   },
   methods: {
     goTo(target) {
@@ -48,12 +69,12 @@ export default {
     border-bottom: solid $secondary-color 1px;
   }
 }
-button {
-  border: none;
-  outline:none;
+.is-focus-burger-menu {
+  color: $secondary-color;
+  font-weight: bold;
 }
+button:focus {outline:0;}
 button:hover {
-  cursor: pointer;
   font-weight: bold;
 }
 .badge {
@@ -62,4 +83,16 @@ button:hover {
   border-radius: 5px;
   padding: 2px;
 }
+.burger-menu {
+  display: none;
+}
+@media (max-width: 855px) {
+  .header-bar {
+    display: none;
+  }
+  .burger-menu {
+    display: initial;
+  }
+}
+
 </style>

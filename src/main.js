@@ -8,6 +8,7 @@ import App from './App.vue'
 import firebase from './firebase'
 import routes from './routes';
 import store from './store';
+import './assets/tailwind.css'
 
 const router = new VueRouter({
   mode: 'history',

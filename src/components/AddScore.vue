@@ -1,20 +1,20 @@
 <template>
-  <div class="root">
+  <div class="flex flex-col items-center justify-around h-full">
     <div class="title">Add your score</div>
-    <div class="form-input">
-      <div class="block-input">
+    <div class="form-input w-full flex items-center justify-center flex-row flex-wrap">
+      <div class="block-input mb-10 mx-10">
         <img class="img" src="../assets/body-weight.png" width="50" />
         <input type="number" @input="onChange($event, 'pullUp')" :value="form.pullUp">
       </div>
-      <div class="block-input">
+      <div class="block-input mb-10 mx-10">
         <img class="img" src="../assets/workout.png" width="50" />
         <input type="number" @input="onChange($event, 'pushUp')" :value="form.pushUp">
       </div>
-      <div class="block-input">
+      <div class="block-input mb-10 mx-10">
         <img class="img" src="../assets/cardio.png" width="50" />
         <input type="number" @input="onChange($event, 'dips')" :value="form.dips">
       </div>
-      <div class="block-input">
+      <div class="block-input mb-10 mx-10">
         <img class="img" src="../assets/plank.png" width="50" />
         <input type="number" @input="onChange($event, 'sheathing')" :value="form.sheathing">
       </div>
@@ -106,7 +106,6 @@ input[type=number] {
   justify-content: center;
 }
 .form-input {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -134,7 +133,7 @@ input {
   background-color: transparent;
   margin: 0px 5px;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
 }
 .submit {
