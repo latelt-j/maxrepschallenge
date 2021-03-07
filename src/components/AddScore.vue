@@ -83,7 +83,7 @@ export default {
       this.form[type] = parseFloat(event.target.value);
     },
     async onSubmit() {
-      if (this.isFormValid) {
+      if (this.formState.isValid) {
         await this.submitReps(this.form);
         this.form = {};
         this.changeModalState();

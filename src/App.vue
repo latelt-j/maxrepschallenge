@@ -3,6 +3,7 @@
     <div v-if="isLogged" class="flex flex-initial justify-between flex-col w-full text-center">
       <HeaderBar />
       <router-view></router-view>
+      <Notifications :is-notified="isNotified" />
       <div class="flex flex-row items-center justify-end w-full">
         <div>Made with</div>
         <font-awesome-icon icon="heart" color="#F7545B" style="margin: 0 5px"/>
@@ -32,14 +33,21 @@
 <script>
 import { mapState } from "vuex";
 
-import Login from './components/Login.vue'
-import HeaderBar from './components/HeaderBar.vue'
+import Login from '@/components/Login.vue'
+import HeaderBar from '@/components/HeaderBar.vue'
+import Notifications from "@/components/Notifications";
 
 export default {
   name: 'App',
   components: {
+    Notifications,
     Login,
     HeaderBar
+  },
+  data() {
+    return {
+      isNotified: false
+    }
   },
   mounted() {
     if (this.user.token && this.$route.path === '/') {
@@ -51,6 +59,16 @@ export default {
       return this.user.token;
     },
     ...mapState(['user'])
+  },
+  watch: {
+    user: {
+      deep: true,
+      handler() {
+        console.log('handler');
+        this.isNotified = true;
+        setTimeout(() => this.isNotified = false, 5000);
+      }
+    }
   }
 }
 </script>
