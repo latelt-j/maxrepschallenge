@@ -8,7 +8,7 @@
       <li>Dips</li>
       <li>Planche</li>
     </ul>
-    <div>Tu dois faire un nombre maximum de répétition pour chacun de ses exercices en respectant l'ordre (tractions, pompes, dips, planche)</div>
+    <div>Tu dois faire un nombre maximum de répétition pour chacun de ces exercices en respectant l'ordre (tractions, pompes, dips, planche)</div>
     <div>Entre chaque exercice tu as 2 minutes de temps de repos</div>
     <div>Tu as le droit pendant ta série de répétitions de prendre un arrêt de 2 secondes MAXIMUM (autant de fois que tu veux) sinon ça arrête la série en cours.</div>
     <div>Bonne chance !</div>

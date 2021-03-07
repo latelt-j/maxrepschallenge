@@ -1,0 +1,40 @@
+{
+  "wods": [
+    {
+    "mains": [{
+      "burpees": {
+        "sets": 50
+      },
+      "thurster": {
+        "sets": 50
+      },
+      "sprawlBiceps": {
+        "sets": 50
+      },
+      "pushPress": {
+        "sets": 50
+      },
+      "sotsPress": {
+        "sets": 50
+      },
+      "zercherSquat": {
+        "sets": 50
+      }
+    }],
+    "subs": [{
+      "pushUp": {
+        "sets": 70
+      },
+      "dips": {
+        "sets": 70
+      },
+      "sitUps": {
+        "sets": 70
+      },
+      "swings": {
+        "sets": 70
+      }
+    }]
+    }
+  ]
+}

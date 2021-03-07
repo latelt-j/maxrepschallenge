@@ -19,7 +19,8 @@
         <input type="number" @input="onChange($event, 'sheathing')" :value="form.sheathing">
       </div>
     </div>
-    <div class="submit" @click="changeModalState()" :disabled="true" :class="{ 'isDisabled': !isFormValid, 'isLoading': isLoading }">
+    <div v-if="formState.isBullshit">Mmmh are you sure...? Stop bullshit me.</div>
+    <div class="submit" @click="changeModalState()" :disabled="true" :class="{ 'isDisabled': !formState.isValid, 'isLoading': isLoading }">
       <span v-if="!isLoading">SUBMIT THAT BITCH!</span>
       <div v-else class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
@@ -64,8 +65,16 @@ export default {
     }
   },
   computed: {
-    isFormValid() {
+    isFormEmpty() {
       return this.form.pullUp && this.form.pushUp && this.form.dips && this.form.sheathing;
+    },
+    formState() {
+      const { pullUp, pushUp, dips, sheathing } = this.form;
+      if (this.isFormEmpty) {
+        const isBullshit = pullUp > 200 || pushUp > 200 || dips > 200 | sheathing > 50;
+        return { isBullshit, isValid: !isBullshit }
+      }
+      return { isBullshit: false, isValid: false };
     },
     ...mapState(['user', 'isLoading'])
   },
@@ -141,7 +150,7 @@ input {
   background-color: black;
   border-radius: 10px;
   padding: 15px;
-  color: black;
+  color: $secondary-color;
   &.isDisabled {
     background-color: rgba($secondary-color, 0.3);
   }
@@ -195,7 +204,7 @@ button {
   background-color: black;
   border-radius: 10px;
   padding: 10px;
-  color: black;
+  color: $secondary-color;
   text-align: center;
 }
 </style>
