@@ -2,7 +2,7 @@
   <div id="app" class="h-full min-h-screen flex flex-initial">
     <div v-if="isLogged" class="flex flex-initial justify-between flex-col w-full text-center">
       <HeaderBar />
-      <router-view></router-view>
+      <router-view class="p-5 h-full"></router-view>
       <Notifications :is-notified="isNotified" />
       <div class="flex flex-row items-center justify-end w-full">
         <div>Made with</div>

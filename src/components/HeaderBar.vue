@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="burger-menu">
+      <div class="title-mobile">MAX REPS CHALLENGE</div>
       <Slide>
         <span :class="{'is-focus-burger-menu': isFocus('addscore')}" @click="goTo('addscore')">Add score</span>
         <span :class="{'is-focus-burger-menu': isFocus('myscore')}" @click="goTo('myscore')">My score</span>
         <span :class="{'is-focus-burger-menu': isFocus('leaderboard')}" @click="goTo('leaderboard')">Leaderboard</span>
         <span :class="{'is-focus-burger-menu': isFocus('rules')}" @click="goTo('rules')">Rules (fr)</span>
+        <span :class="{'is-focus-burger-menu': isFocus('wod')}" @click="goTo('wod')">WOD</span>
         <div>Track body <span class="badge">soon</span></div>
         <div @click="logoutGoogleAuth()">Logout</div>
       </Slide>
@@ -16,6 +18,7 @@
       <button class="itemHeaderBar" :class="{'is-focus': isFocus('myscore')}" @click="goTo('myscore')">My score</button>
       <button class="itemHeaderBar" :class="{'is-focus': isFocus('leaderboard')}" @click="goTo('leaderboard')">Leaderboard</button>
       <button class="itemHeaderBar" :class="{'is-focus': isFocus('rules')}" @click="goTo('rules')">Rules (fr)</button>
+      <button class="itemHeaderBar" :class="{'is-focus': isFocus('wod')}" @click="goTo('wod')">WOD</button>
       <div class="itemHeaderBar">Track body weight <span class="badge">soon</span></div>
     </div>
   </div>
@@ -91,7 +94,16 @@ button:hover {
     display: none;
   }
   .burger-menu {
-    display: initial;
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+  }
+  .title-mobile {
+    color: #caffbf;
+    font-size: 24px;
   }
 }
 

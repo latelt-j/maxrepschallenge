@@ -23,6 +23,7 @@ const store = new Vuex.Store({
       sheathing: null,
       error: null
     },
+    generatedWod: null,
     leaderBoard: {
       pullUp: [],
       pushUp: [],
@@ -84,6 +85,10 @@ const store = new Vuex.Store({
       state.isLoading = false;
       state.user.error = payload;
     },
+    ['CREATE_WOD'] (state, payload) {
+      console.log('CREATE_WOD', payload);
+      state.generatedWod = payload;
+    }
   },
   actions: {
     async loginWithGoogle({ commit }) {
@@ -163,6 +168,21 @@ const store = new Vuex.Store({
       } catch (e) {
         commit('LEADER_BOARD_FAILURE', e);
       }
+    },
+    generateWod({ commit }, wod) {
+      const { mains, subs } = wod;
+      let nbExsMain = [0, 1, 2, 3, 4];
+      let nbExsSub = [0, 1, 2, 3];
+      const ex1 = nbExsMain[Math.floor(Math.random() * nbExsMain.length)];
+      nbExsMain.splice(ex1, 1);
+      const ex3 = nbExsMain[Math.floor(Math.random() * nbExsMain.length)];
+      nbExsMain.splice(ex3, 1);
+      const ex2 = nbExsSub[Math.floor(Math.random() * nbExsSub.length)];
+      nbExsSub.splice(ex2, 1);
+      const ex4 = nbExsSub[Math.floor(Math.random() * nbExsSub.length)];
+      nbExsSub.splice(ex4, 1);
+      const generatedWod = [mains[ex1], subs[ex2], mains[ex3], subs[ex4]];
+      commit('CREATE_WOD', generatedWod);
     }
   },
   plugins: [vuexLocalStorage.plugin]
